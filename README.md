@@ -3,8 +3,9 @@ A RGB-D vision-based, GPS-denied navigation and control architecture for a rotor
 
 The original code, written by Robert Leishman, is in the Public Domain. This work was completed by Robert Leishman while performing official duties as a federal government employee with the Air Force Research Laboratory and is therefore in the public domain (see 17 USC § 105). Public domain software can be used by anyone for any purpose, and cannot be released under a copyright license.
 
-However, all software in the Master Branch was not written by Robert Leishman and does come with copyrights.  Copyrighted software (and associated copyright information) is found in the following nodes/folders: cereal_port, control_toolbox, mikro_serial
+However, all software in the Master Branch was not written by Robert Leishman and does come with copyrights.  Copyrighted software (and associated copyright information) is found in the following nodes/folders: cereal_port, control_toolbox, mikro_serial, and microstrain_3dmgx2_imu.  The rest of the software is public domain. 
 
+All of the code written by Robert Leishman includes doxygen comments and documentation can be built using that tool.  For more information on that see: http://www.stack.nl/~dimitri/doxygen/
 
 
 Several technical papers that describe the development: 
