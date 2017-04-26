@@ -1,0 +1,50 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b This code implements a Multiplicative Extended Kalman Filter to estimate the states of a hexacopter aircraft.
+ 
+   The EKF uses gyro measurements in the prediction and accelerometers, altimeter, and visual odometry as measurement
+   updates.  The rotation information is in quaternion form (different from the windows implementation).
+ 
+   As an MEKF, the error for the quaternion is computed using the quaternion product instead of subtraction.
+   A result of this is that the covariance is smaller than the state (by one for each quaternion in the state).
+   Consequently, the covariance is predicted forward using the error dyanmics.  Also, measurements update the error
+   state, which is then used to update the real state.
+ 
+   The other major point is that the position and yaw angle information is relative to the current keyframe of the visual
+   odometry (view matching); consequently those state change each time a new node is declared. The other states remain.
+ 
+   The estimator estimates [f r d qx qy qz qw u v w bp bq br ax ay | cqx cqy cqz cqw cx cy cz] where f,r,d are the 
+   front, right, and down displacements from the current node; qx, qy, qz, qw are the quaternion orientation 
+   (w/ qz relative); u, v, w are the body-fixed frame velocities; bp, bq, br are the gyro biases; 
+   ax, ay are the accel biases.  Optionally, the calibration between the body-fixed frame and the camera frame can be 
+   estimated by the filter as well - the option is enabled by the #define STATE_LENGTH and COVAR_LENGTH in constants.h
+ 
+
+ Copyright: This work was completed by Robert Leishman while performing official duties as 
+ a federal government employee with the Air Force Research Laboratory and is therefore in the 
+ public domain (see 17 USC § 105). Public domain software can be used by anyone for any purpose,
+ and cannot be released under a copyright license
+
+
+\section codeapi Code API
+
+The main classes are as follows:
+<ul>
+<li>ROSServer - Provides the interface with ROS and runs the main loop. It recieves all the sensor data and publishes 
+the estimates and calls the estimator when data has arrived.</li>
+<li>Estimator - Implements the MEKF. </li>
+<li>Constants - Contains the #defines for deciding whether or not to estimate the calibration constants and all the other 
+constants that are used in the estimation. </li>
+</ul>
+The following classes are used to package data into necessary pieces:
+<ul>
+<li>NavEdge - The edges between the nodes for the nodes and edges graph map. </li>
+<li>NavNode - The nodes for the generated nodes and edges graph map. </li>
+<li>VOData - A more convenient package for the VO data than the message. </li>
+<li>StatePacket - .h file only.  Packages the state & covariance up for delayed update purposes. </li>
+</ul>
+
+
+*/

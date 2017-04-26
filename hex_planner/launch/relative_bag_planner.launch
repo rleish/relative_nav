@@ -1,0 +1,19 @@
+
+
+<launch>
+  <!-- use this to pass a name for the mocap global reference frame --> 
+  <arg name="global_frame_name" default="node_frame" />  
+
+  <arg name="markerset_name"    default="body_fixed" /> <!-- pass in the name of the markerset - to set the right names in tf -->
+
+  <!-- Namespace for the openni camera stuff - also used to name tf's -->
+  <arg name="camera" value="camera" />
+
+  <!-- Costmap and Planner Stuff -->
+  <include file="$(find hex_planner)/launch/basic.launch" >
+    <arg name="global_frame" value="$(arg global_frame_name)" />
+    <arg name="robot_base_frame" value="$(arg global_frame_name)/$(arg markerset_name)" /> <!-- the tf name of the robot base -->
+    <arg name="yaml_filename" value="rel_hexplanner_costmap_param.yaml" /> <!-- the name of the file where all the other costmap2d parameters are set -->
+  </include>
+  
+</launch>

@@ -1,0 +1,56 @@
+<!-- Launch the background stuff (when using truth) necessary to use the hex_planner -->
+<launch>
+
+  <!-- Use this parameter to specify whether or not point clouds are downsampled -->
+  <arg name="downsample" default="true" />
+
+  <!-- Use this to specify whether or not psuedo laser scanners are computed -->
+  <arg name="scanner" default="true" /> 
+
+  <!-- use this to pass a name for the mocap global reference frame -->
+  <arg name="global_frame_name" default="mocap" />  
+
+  <!-- use this for the global frame to link the the camera to the body in the static transform publisher-->
+  <arg name="tf_global_frame_name" default="$(arg global_frame_name)" />   
+
+  <!-- pass in the name of the kickstart to use to get the right markerset -->
+  <arg name="kickstart_name" default="kickstart_kinect" />  
+
+  <!-- pass in the name of the markerset - to set the right names in tf -->
+  <arg name="markerset_name" default="ros_kinect/base_virtual" /> 
+
+  <!-- default transform between /$(arg global_frame_name)_$(arg markerset_name) /$(arg camera)_link -->
+  <arg name="inter_trans" default="0 0 0 0 0 0" /> 
+
+  <!-- namespace for the openni camera stuff -->
+  <arg name="camera"              default="camera" />
+  <!-- Allows openni to register the depth camera with the RGB camera -->
+  <arg name="depth_registration"  default="true" /> 
+  <!-- working at 15Hz (every other image) when this is 1 - at 30Hz when it is 0 -->
+  <arg name="data_skip_param"     default="1" />
+
+
+
+  <!-- Start the Nodes: -->
+
+  <!-- Openni stuff -->
+  <include file="$(find hex_launch)/launch/includes/pts_to_laser.launch" >
+    <arg name="data_skip_param"         value="$(arg data_skip_param)" />  
+    <arg name="camera"                  value="$(arg camera)" />
+    <arg name="depth_registration"      value="$(arg depth_registration)" />
+    <arg name="scanner"                 value="$(arg scanner)" />
+    <arg name="downsample"              value="$(arg downsample)" />
+  </include>
+
+  <!-- Truth Stuff -->
+  <include file="$(find evart_bridge)/launch/general_launch.launch" >
+    <arg name="global_frame_name"            value="$(arg global_frame_name)" />
+    <arg name="kickstart_name"               value="$(arg kickstart_name)" />
+  </include>
+
+  <!-- Launch a static transform publisher to link the evart_bridge and Openni tf trees -->
+  <node pkg="tf" type="static_transform_publisher" name="$(arg tf_global_frame_name)_static_convert"
+        args="$(arg inter_trans)  /$(arg tf_global_frame_name)/$(arg markerset_name) /$(arg camera)_link 100" />
+
+</launch>
+

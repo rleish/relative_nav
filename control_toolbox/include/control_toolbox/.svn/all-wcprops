@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/include/control_toolbox
+END
+pid.h
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/include/control_toolbox/pid.h
+END
+sinusoid.h
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/include/control_toolbox/sinusoid.h
+END
+dither.h
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/include/control_toolbox/dither.h
+END
+sine_sweep.h
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/include/control_toolbox/sine_sweep.h
+END
+pid_gains_setter.h
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/include/control_toolbox/pid_gains_setter.h
+END
+filters.h
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/include/control_toolbox/filters.h
+END

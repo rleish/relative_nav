@@ -1,0 +1,33 @@
+<!-- 
+  Use this file to do pathplanning based on relative states from the estimator. 
+  This demo relies on estimates from the MEKF, the hexacopter, attached to a RGB-D camera and computer, etc. 
+-->
+
+<launch>
+  <!-- use this to pass a name for the mocap global reference frame --> 
+  <arg name="global_frame_name" default="node_frame" />  
+
+  <arg name="markerset_name"    default="body_fixed" /> <!-- pass in the name of the markerset - to set the right names in tf -->
+
+  <!-- Namespace for the openni camera stuff - also used to name tf's -->
+  <arg name="camera" value="camera" />
+
+  <!-- Background stuff: truth, openni -->
+  <include file="$(find hex_launch)/launch/includes/background.launch" >
+    <arg name="global_frame_name" value="mocap" />  <!-- give the motion capture a different global name -->
+    <arg name="tf_global_frame_name" value="$(arg global_frame_name)" />     
+    <arg name="kickstart_name"    value="kickstart_heavy" /> <!-- pass in the name of the kickstart to use to get the right markerset --> 
+    <arg name="markerset_name"    value="$(arg markerset_name)" /> <!-- pass in the name of the markerset - to set the right names in tf -->
+    <arg name="inter_trans"       value="0.104 0.015 -0.075 0 0 0" /> <!-- default (X Y Z Yaw Pitch Roll) transformation between body-fixed frame and the openni camera_link frame - in ROS NWU convention! -->
+    <arg name="camera"            value="$(arg camera)" /> 
+  </include>
+
+  <!-- Costmap and Planner Stuff -->
+  <include file="$(find hex_planner)/launch/basic.launch" >
+    <arg name="global_frame" value="$(arg global_frame_name)" />
+    <arg name="robot_base_frame" value="$(arg global_frame_name)/$(arg markerset_name)" /> <!-- the tf name of the robot base -->
+    <arg name="relative_plans" value="true" /> 
+    <arg name="yaml_filename" value="rel_hexplanner_costmap_param.yaml" /> <!-- the name of the file where all the other costmap2d parameters are set -->
+  </include>
+  
+</launch>

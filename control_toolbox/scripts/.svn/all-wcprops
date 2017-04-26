@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/scripts
+END
+tune_pid.py
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/scripts/tune_pid.py
+END

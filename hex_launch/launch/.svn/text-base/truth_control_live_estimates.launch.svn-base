@@ -1,0 +1,52 @@
+<!-- 
+  This launch file starts everything to be able to run the estimator live, based on onboard sensors only, and
+  to run the control based on the truth.  It runs the path planner (based on truth and RGB-D), so that the 
+  hex will follow paths if they are computed (need an input navigation goal from RVIZ or something else)
+-->
+
+<launch>
+  
+
+  <!-- This launch file starts the truth, RGB-D processing, and the path planner -->
+  <include file="$(find hex_launch)/launch/planning/planning_demo_truth_hex.launch" >
+    <!-- I could modify the arguments in that file here if I needed to -->
+  </include>
+  
+  <!-- Now start the VO (some parameters are available to be set as arguments if desired)--> 
+  <include file="$(find kinect_vo)/launch/vo_basic_launch.launch" />
+  
+  <!-- Start the IMU and Altimeters -->
+  <!-- Microstrain IMU -->
+  <include file="$(find microstrain_3dmgx2_imu)/microstrain_3dmgx2.launch" >
+    <arg name="autocalibrate" value="true" />
+  </include>
+  
+  <!-- hex IMU (and allows control commands to be relayed to the hex)-->
+  <node pkg= "mikro_serial" type="MikoControl" name="mikro_comm" >
+    <!-- Value is multiplied by 10 in receiver and then used as milliseconds. -->
+	  <param name="/debug_data_rate" value="250" /> 
+  </node> 
+  
+  <!-- Altimeter node: note there are arguments we could set here and map down. -->
+  <include file="$(find altimeter_node)/launch/alt_node.launch" /> 
+  
+  <!-- Start the Control -->
+  <include file="$(find diff_flat_control)/launch/control_basic.launch" >
+    <!-- Choose to base control off of truth or estimates -->
+    <arg name="truth_control" value="true" />  
+    <arg name="int_control" default="true" />  <!-- integral control component -->
+    <!-- Choose whether or not to record control data in a ros bag (will be located in ~/.ros/) -->
+    <arg name="record_data" value="false" />
+    <arg name="sec_to_hover" value="10.0" /> <!-- secs to hover before following a waypoint path -->
+  </include>
+  
+  
+  <!-- Start the Estimator (Lots of params available to change if needed) -->
+  <include file="$(find rel_MEKF)/launch/rel_MEKF_basic.launch" />
+  
+  
+  <!-- Start the script that records data to the rosbag -->
+  <node name="estimator_record" pkg="hex_launch" type="estimator_record.sh" />
+
+</launch>
+   

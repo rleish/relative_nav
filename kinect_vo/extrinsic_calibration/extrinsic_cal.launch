@@ -1,0 +1,13 @@
+<launch>
+
+  <!-- Bring up Xtion Pro Live -->
+  <include file="$(find openni_launch)/launch/openni.launch">
+    <!-- Set cam info URLs, if not in the default location -->
+  </include>
+
+  <!-- Extrinsic transform publisher -->
+  <include file="$(find camera_pose_calibration)/blocks/calibration_tf_publisher.launch">
+    <arg name="cache_file" value="/some/path/kinect_extrinsics_cache.bag" />
+  </include>
+
+</launch>

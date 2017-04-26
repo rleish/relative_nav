@@ -1,0 +1,34 @@
+<package>
+  <description brief="kinect_vo">
+
+     kinect_visual_odometry provides visual odometry capability using 
+      kinect imagery.  It uses FAST features and BRIEF descriptors to 
+      speed up processing... blah blah
+
+
+
+  </description>
+  <author>Robert Leishman</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/kinect_vo</url>
+  <depend package="tf"/>
+  <!--  <depend package="g2o"/> -->
+  <rosdep name="eigen"/>
+  <depend package="roscpp"/>
+  <depend package="rosbag"/>
+  <depend package="cv_bridge"/>
+  <depend package="sensor_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="evart_bridge"/>
+  <!-- <rosdep name="qt4"/> -->
+  <rosdep name="opencv2"/>
+
+  <!-- export Eigen-dependent headers to others, from bottom of:http://www.ros.org/wiki/eigen -->  
+  <export>
+    <cpp cflags="`pkg-config --cflags eigen3` -I${prefix}/include `rosboost-cfg --cflags`" />
+  </export>
+
+</package>
+
+

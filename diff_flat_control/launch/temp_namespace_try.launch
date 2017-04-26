@@ -1,0 +1,36 @@
+<!-- launch file for computing control for the hexacopter planning_demo-->
+
+<launch>
+  
+  <!-- Start the controller 
+       Below shows how to edit the private parameters for this node: -->
+  <include file="$(find diff_flat_control)/launch/control_basic.launch" >
+    <!-- Choose to base control off of truth or estimates -->
+    <arg name="truth_control" value="false" />  
+    <arg name="int_control" default="false" />  <!-- integral control component -->
+    <!-- Choose whether or not to record control data in a ros bag (will be located in ~/.ros/) -->
+    <arg name="record_data" value="false" />
+    <arg name="sec_to_hover" value="1000.0" /> <!-- secs to hover before following a waypoint path -->
+  </include>
+
+
+    <!-- Put the truth-based control on a different namespace -->
+  <group ns="true_control">
+    <include file="$(find diff_flat_control)/launch/control_basic.launch" >
+    <!-- Choose to base control off of truth or estimates -->
+    <arg name="truth_control" value="true" />  
+    <arg name="int_control" default="false" />  <!-- integral control component -->
+    <!-- Choose whether or not to record control data in a ros bag (will be located in ~/.ros/) -->
+    <arg name="record_data" value="false" />
+    <arg name="sec_to_hover" value="1000.0" /> <!-- secs to hover before following a waypoint path -->
+  </include>
+
+  </group>
+
+  <!-- Start service to take control commands and relay them to the hex
+  <node pkg= "mikro_serial" type="MikoControl" name="mikro_comm" >
+	  <param name="/debug_data_rate" value="50" /> 
+  </node>  
+  -->
+
+</launch>

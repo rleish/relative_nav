@@ -1,0 +1,32 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b Diff_Flat_Control is an implementation of the differential flatness controller described in the work by 
+Ferrin J., Leishman R., McLain T., and Beard R., "Differential Flatness-Based Control of a Rotorcraft 
+for Aggressive Maneuvers" in IEEE IROS Sept. 2011. 
+
+This controller provides the ability to follow predefined twice-differentiable paths, hover in place, and follow 
+a list of waypoints.  This control can be done in a global coordinate frame, such as that of a motion capture system,  
+or using a relative coordinate frame, like those produced using the rel_MEKF. As such, it listens for topics from 
+those two sources (motion capture truth or rel_MEFK state messages), computes the control, and then outputs a 
+message for cyphy_serial_driver to deliver to the Mikrokopter autopilot.  
+
+Note that the matlab script /Matlab/LQR_script_heavy.m computes the gain matrices and writes them to the file 
+"HeavyGainMatricies.txt", which is then read into the program and used for the control.  One can adjust the gains 
+by changing the parameters for Bryson's Rule in that matlab script.  
+
+\section codeapi Code API
+
+
+The main classes are as follows:
+<ul>
+<li>ROSServer - Provides the interface with ROS. It recieves the truth or relative data and publishes 
+the control messages.</li>
+<li>DiffFlat - Implements the differential flatness controller.  Additional paths to be followed can be
+inserted here.  Follow the format outlined by the circle path. </li>
+</ul>
+
+
+
+*/

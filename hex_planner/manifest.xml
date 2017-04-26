@@ -1,0 +1,26 @@
+<package>
+  <description brief="hex_planner">
+
+     hex_planner
+
+  </description>
+  <author>Robert</author>
+  <license>Public Domain</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hex_planner</url>
+  <depend package="navfn"/>
+  <depend package="costmap_2d"/>
+  <depend package="sensor_msgs"/>
+  <depend package="tf"/>
+  <depend package="geometry_msgs"/>
+  <depend package="rel_MEKF"/>
+  <rosdep name="eigen"/>
+
+ <!-- export Eigen-dependent headers to others, from bottom of:http://www.ros.org/wiki/eigen -->  
+  <export>
+    <cpp cflags="`pkg-config --cflags eigen3` -I${prefix}/include `rosboost-cfg --cflags`" />
+  </export>
+
+</package>
+
+

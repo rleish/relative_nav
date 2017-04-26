@@ -1,0 +1,36 @@
+<!-- A basic launch file to run hex_planner   -->
+<launch> 
+
+  <!-- Names for node, costmap and planner, plus the filename for costmap_2d parameters: -->
+  <arg name="node_name" default="hex_plan"/>
+  <arg name="map_name" default="cost_map"/>
+  <arg name="plan_name" default="navfn_planner"/>
+  <arg name="global_frame" default="mocap" />
+  <arg name="robot_base_frame" default="camera_depth_frame" />
+  <arg name="yaml_filename" default="hexplanner_costmap_param.yaml" />
+  <arg name="relative_plans" default="true" />
+ 
+  <!-- prefix for launching gdb debugging: -->
+  <arg name="debug" default="false" />
+  <arg if="$(arg debug)" name="launch_prefix" value="xterm -e gdb --args" /> -->
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  
+  <!-- launch the node -->
+  <node name="$(arg node_name)" pkg="hex_planner" type="hex_planner" launch-prefix="$(arg launch_prefix)" >
+    <param name="/costmap_name" value="$(arg map_name)" />
+    <param name="/planner_name" value="$(arg plan_name)" />
+    <param name="/use_relative_planning" value="$(arg relative_plans)" />   
+    <!-- Set the params using a .yaml file -->
+    <rosparam command="load" file="$(find hex_planner)/launch/$(arg yaml_filename)" ns="/$(arg node_name)/$(arg map_name)" />
+    <!-- Set some params individually: -->
+    <!-- <param name="/costmap/publish_voxel_map" value="false" /> -->
+    <param name="/$(arg map_name)/global_frame"  value="/$(arg global_frame)" />  
+    <param name="/$(arg map_name)/robot_base_frame" value="/$(arg robot_base_frame)" />
+    -->
+
+    <!-- Now set some navfn params -->
+    <param name="/$(arg plan_name)/visualize_potential" value="false" /> 
+    <param name="/$(arg plan_name)/allow_unknown" value="false" />         
+  </node>
+
+</launch>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/src
+END
+dither.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/src/dither.cpp
+END
+sine_sweep.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/src/sine_sweep.cpp
+END
+pid_gains_setter.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/src/pid_gains_setter.cpp
+END
+pid.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/src/pid.cpp
+END
+sinusoid.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/src/sinusoid.cpp
+END

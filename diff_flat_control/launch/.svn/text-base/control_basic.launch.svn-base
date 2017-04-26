@@ -1,0 +1,45 @@
+<!-- launch file for computing control for the hexacopter planning_demo-->
+
+<launch>
+  
+  <!-- Choose to base control off of truth or estimates -->
+  <arg name="truth_control" default="false" />
+
+  <!-- Choose whether or not to use an Integrator in the position control -->
+  <arg name="int_control" default="true" />
+  
+  <!-- Choose whether or not to record control data in a ros bag (will be located in ~/.ros/) -->
+  <arg name="record_data" default="true" />
+  
+  <!-- How many seconds should the controller wait at hover before it follows any waypoint paths? -->
+  <arg name="sec_to_hover" default="10.0" />
+
+  <!-- Topic on which the commands will be published from this node: -->
+  <arg name="command_topic" default="/mikoCmd" />
+
+  <!-- Switch between gains for using truth and using relative estimates: -->
+  <arg if="$(arg truth_control)" name="gain_path" value="$(find diff_flat_control)/Matlab/HeavyGainMatrices.txt" />
+  <arg unless="$(arg truth_control)" name="gain_path" value="$(find diff_flat_control)/Matlab/RelativeHeavyGainMatrices.txt" />
+
+  <!-- Start the controller 
+       Below shows how to edit the private parameters for this node: -->
+  <node pkg= "diff_flat_control" type="diff_flat_control" name="controller" >
+	  <param name="/truth_control" value="$(arg truth_control)"/> 
+    <param name="/allow_integral_control" value="$(arg int_control)"/>
+    <!-- Example of using relative paths for cross-system functionality: /-->
+	  <param name="/gain_file_path" value="$(arg gain_path)" type="string"/>
+	  <param name="/seconds_to_hover" value="$(arg sec_to_hover)" />
+    <param name="/command_topic" value="$(arg command_topic)" />
+  </node>
+  
+  <!-- Start the script that records data to the rosbag -->
+  <node if="$(arg record_data)" name="ros_record" pkg="diff_flat_control" type="control_record.sh" />
+
+
+  <!-- Start service to take control commands and relay them to the hex
+  <node pkg= "mikro_serial" type="MikoControl" name="mikro_comm" >
+	  <param name="/debug_data_rate" value="50" /> 
+  </node>  
+  -->
+
+</launch>

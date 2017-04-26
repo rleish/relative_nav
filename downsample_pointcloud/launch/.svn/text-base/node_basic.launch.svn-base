@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="downsample_pointcloud" type="downsample_node" name="downsampler"  />
+    <param name="input_cloud_name" value="cloud_throttled" />
+    <param name="output_cloud_name" value="/downsampled_cloud" />
+    <param name="x_leaf_size" value="0.10" />
+    <param name="y_leaf_size" value="0.10" />
+    <param name="z_leaf_size" value="0.10" />
+  </node>               
+</launch>

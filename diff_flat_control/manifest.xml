@@ -1,0 +1,26 @@
+<package>
+  <description brief="diff_flat_control">
+
+     See the description in mainpage.dox.
+
+  </description>
+  <author>Robert Leishman</author>
+  <license>Public Domain</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/diff_flat_control</url>
+  <depend package="rel_MEKF"/>
+  <depend package="roscpp"/>
+  <depend package="mikro_serial"/>
+  <depend package="control_toolbox"/>
+  <rosdep name="eigen"/>
+
+ <!-- export Eigen-dependent headers to others: bottom of:http://www.ros.org/wiki/eigen 
+   NOTE: Take off the second line about lflags - that is not important and will mess up your stuff!!-->  
+  <export>
+    <cpp cflags="`pkg-config --cflags eigen3` -I${prefix}/include `rosboost-cfg --cflags`" />
+  </export>
+
+
+</package>
+
+

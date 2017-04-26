@@ -1,0 +1,28 @@
+<package>
+  <description brief="hex_launch">
+
+     hex_launch provides launch files for running the hexacopter platform using visual odometry, path planning,
+     microstrain IMU and altimeter sensors, and providing access to truth information through cortex.  Control
+     is computed with the diff_flat_control node. 
+
+  </description>
+  <author>Robert Leishman</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hex_launch</url>
+  <depend package="kinect_vo"/>
+  <depend package="hex_planner"/>
+  <depend package="diff_flat_control"/>
+  <depend package="kinect_vo"/>
+  <depend package="mikro_serial"/>
+  <depend package="altimeter_node"/>
+  <depend package="tf"/>
+  <depend package="evart_bridge"/>
+  <depend package="microstrain_3dmgx2_imu"/>
+  <depend package="pointcloud_to_laserscan"/>
+  <depend package="openni_launch"/>
+  <depend package="openni_camera"/>
+
+</package>
+
+

@@ -1,0 +1,17 @@
+<!-- launch file for computing control for the hexacopter, using truth-->
+
+<launch>
+
+  <arg name="record_control" default="false" />
+  <arg name="debug_rate" default="50" />
+
+  <!-- Start service to take control commands and relay them to the hex -->
+  <node pkg= "mikro_serial" type="MikoControl" name="mikro_comm" >
+	  <param name="/debug_data_rate" value="$(arg debug_rate)" /> 
+  </node> 
+  
+    <!-- Start the script that records data to the rosbag -->
+  <node if="$(arg record_control)" name="ros_record" pkg="diff_flat_control" type="control_record.sh" />
+  
+
+</launch>

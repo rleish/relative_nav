@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/srv
+END
+SetPidGains.srv
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/wg-ros-pkg/!svn/ver/49056/stacks/pr2_controllers/branches/pr2_controllers-1.4/control_toolbox/srv/SetPidGains.srv
+END

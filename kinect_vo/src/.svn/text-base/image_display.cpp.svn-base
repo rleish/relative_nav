@@ -1,0 +1,23 @@
+
+#include "image_display.h"
+
+
+ImageDisplay::ImageDisplay(std::string window_name):name(window_name)
+{
+  cv::namedWindow(name);
+
+
+
+}
+
+void ImageDisplay::displayImage(cv::Mat image)
+{
+  cv::imshow(name, image);
+  cv::waitKey(1);
+}
+
+
+ImageDisplay::~ImageDisplay()
+{
+  cv::destroyAllWindows();
+}

@@ -1,0 +1,15 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b downsample_pointcloud 
+
+<!-- 
+ This simple package offers a node and a nodelet that downsample and publish a pointcloud2 pointcloud.
+ Nothing fancy. 
+-->
+
+-->
+
+
+*/

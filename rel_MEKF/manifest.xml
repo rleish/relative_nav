@@ -1,0 +1,30 @@
+<package>
+  <description brief="This code implements a Multiplicative Extended Kalman Filter to estimate the states of a hexacopter aircraft.">
+
+     rel_MEKF
+
+  </description>
+  <author>Robert Leishman</author>
+  <license>Public Domain</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/rel_MEKF</url>
+  <depend package="roscpp"/>
+  <depend package="rosbag"/>
+  <depend package="sensor_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="kinect_vo"/>
+  <depend package="mikro_serial"/>
+  <depend package="altimeter_node"/>
+  <depend package="tf"/>
+  <depend package="evart_bridge"/>
+  <rosdep name="eigen"/>
+
+  <!-- export Eigen-dependent headers to others: bottom of:http://www.ros.org/wiki/eigen -->
+  
+  <export>
+    <cpp cflags="`pkg-config --cflags eigen3` -I${prefix}/include `rosboost-cfg --cflags`" />
+  </export>
+
+</package>
+
+
