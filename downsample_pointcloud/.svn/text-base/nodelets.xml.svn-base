@@ -1,8 +1,0 @@
-<library path="lib/libdownsample_nodelet">
-  <class name="downsample_pointcloud/CloudThrottleNodelet" type="downsample_pointcloud::CloudThrottleNodelet" base_class_type="nodelet::Nodelet">
-  <description>
-  This nodelet downsamples input point clouds to be used in a costmap for path planning. 
-  This file is required for the nodelet (for Fuerte at least)
-  </description>
-  </class>
-</library>
